@@ -20,7 +20,7 @@ void setup() {
 
 
   //modify this line
-  WiFi.begin("Telekom-qHv9RQ", "8684246704172821");
+  WiFi.begin("SSID", "PW");
   
   
   
