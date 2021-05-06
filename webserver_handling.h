@@ -5,7 +5,7 @@
 #include "server_content.h"
 #include "train.h"
 
-Train train("Locomotive",0);  //Train name, and GPIO pin (in this case, pin 0)
+Train train("mozdony",2,0);
 ESP8266WebServer server(80);
 
 
@@ -29,7 +29,10 @@ void handleNotFound() {
       String spd=server.arg(i);
       train.setSpeed(spd.toInt());
     }
-    
+    if(server.argName(i) == String("dir")){
+      String dir=server.arg(i);
+      train.setForward( dir == "for");
+    }
   }
   server.send(200, "text/plain", message);
 }
