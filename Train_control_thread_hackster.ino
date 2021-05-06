@@ -4,15 +4,12 @@
 #include <Scheduler.h>
 
 class HandleClient:public Task{
-  protected:
+  public:
     void loop(){
       server.handleClient();
     }
 } client_task;
-
-
-
-
+s
 void setup() {
   train.setAcceleration(true);
   WiFi.hostname(train.getName());
@@ -22,15 +19,12 @@ void setup() {
   //modify this line
   WiFi.begin("SSID", "PW");
   
-  
-  
   Serial.begin(115200);
   Serial.println();
   Serial.println("Starting..");
   server.on("/", handleRoot);
   server.onNotFound(handleNotFound);
   server.begin();
-  Serial.println(WiFi.localIP());
   Scheduler.start(&client_task);
   Scheduler.start(&train);
   Scheduler.begin();
